@@ -1,0 +1,11 @@
+{
+    "type": "record",
+    "name": "Client",
+    "namespace": "com.curty.avro",
+    "fields": [
+        {"name": "id", "type": "long"},
+        {"name": "name", "type": "string"},
+        {"name": "cpf", "type": "string"},
+        {"name": "accounts", "type": ["null", "string"], "default": null}
+    ]
+}

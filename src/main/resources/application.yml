@@ -1,0 +1,46 @@
+micronaut:
+  application:
+    name: solid
+kafka:
+  enable:
+    idempotence: ${KAFKA_ENABLE_IDEMPOTENCE:true}
+  health:
+    enabled: ${KAFKA_HEALTH_ENABLED:false}
+  bootstrap:
+    servers: ${KAFKA_BOOTSTRAP_SERVERS:`localhost:9092`}
+  producers:
+    client-producer:
+      key:
+        serializer: org.apache.kafka.common.serialization.StringSerializer
+      value:
+        serializer: com.curty.adapters.kafka.serializer.ClientSerializer
+  consumers:
+    client-consumer:
+      key:
+        deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value:
+        deserializer: com.curty.adapters.kafka.deserializer.ClientDeserializer
+  schema:
+    registry:
+      url: ${KAFKA_SCHEMA_REGISTRY_URL:`http://localhost:8081`}
+  #value:
+  #  subject:
+  #    name:
+  #      strategy: ${KAFKA_VALUE_SUBJECT_NAME_STRATEGY:io.confluent.kafka.serializers.subject.TopicRecordNameStrategy}
+  specific:
+    avro:
+      reader: ${KAFKA_SPECIFIC_AVRO_READER:true}
+  auto:
+    register:
+      schemas: ${KAFKA_AUTO_REGISTER_SCHEMAS:false}
+  ssl:
+    key-password: 1234
+  security:
+    protocol: ${KAFKA_SECURITY_PROTOCOL:PLAINTEXT}
+  linger:
+    ms: ${KAFKA_LINGER:0}
+  batch:
+    size: ${KAFKA_BATCH_SIZE:16384}
+
+
+
